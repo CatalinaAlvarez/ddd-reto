@@ -3,6 +3,7 @@ package co.com.sofka.centroNeuropsicologico.domain.paciente;
 import co.com.sofka.centroNeuropsicologico.domain.consulta.value.ConsultaId;
 import co.com.sofka.centroNeuropsicologico.domain.generics.Email;
 import co.com.sofka.centroNeuropsicologico.domain.generics.Nombre;
+import co.com.sofka.centroNeuropsicologico.domain.paciente.event.*;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.AcudienteId;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.Edad;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.PacienteId;
