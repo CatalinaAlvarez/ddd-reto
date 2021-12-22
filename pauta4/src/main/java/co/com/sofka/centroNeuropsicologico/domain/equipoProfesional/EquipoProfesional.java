@@ -1,5 +1,6 @@
 package co.com.sofka.centroNeuropsicologico.domain.equipoProfesional;
 
+import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.event.*;
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.*;
 import co.com.sofka.centroNeuropsicologico.domain.generics.Email;
 import co.com.sofka.centroNeuropsicologico.domain.generics.Nombre;
@@ -40,7 +41,7 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
         Objects.requireNonNull(tarjetaProfesional);
-        appendChange(new PsicologoCreado(entityId, nombre, email, tarjetaProfesional)).apply();
+        appendChange(new PsicologoCambiado(entityId, nombre, email, tarjetaProfesional)).apply();
     }
 
     public void cambiarNeuropsicologo(NeuropsicologoId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
@@ -48,7 +49,7 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
         Objects.requireNonNull(tarjetaProfesional);
-        appendChange(new NeuropsicologoCreado(entityId, nombre, email, tarjetaProfesional)).apply();
+        appendChange(new NeuropsicologoCambiado(entityId, nombre, email, tarjetaProfesional)).apply();
     }
 
     public void cambiarTerapeutaOcupacional(TerapeutaOcupacionalId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
@@ -56,7 +57,7 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
         Objects.requireNonNull(tarjetaProfesional);
-        appendChange(new TerapeutaOcupacionalCreado(entityId, nombre, email, tarjetaProfesional)).apply();
+        appendChange(new TerapeutaOcupacionalCambiado(entityId, nombre, email, tarjetaProfesional)).apply();
     }
 
     public void actualizarEmailPsicologo(PsicologoId entityId, Email email){
