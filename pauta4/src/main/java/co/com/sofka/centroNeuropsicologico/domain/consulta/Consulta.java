@@ -1,5 +1,6 @@
 package co.com.sofka.centroNeuropsicologico.domain.consulta;
 
+import co.com.sofka.centroNeuropsicologico.domain.consulta.event.*;
 import co.com.sofka.centroNeuropsicologico.domain.consulta.value.*;
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.EquipoProfesionalId;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -48,7 +49,7 @@ public class Consulta extends AggregateEvent<ConsultaId> {
     }
 
     public void actualizarDuracionCita(CitaId entityId, Duracion duracion){
-        appendChange(new DuracionCitaActualizado(entityId, duracion)).apply();
+        appendChange(new DuracionCitaActualizada(entityId, duracion)).apply();
     }
 
     public void actualizarTipoConsultorio(ConsultorioId entityId, Tipo tipo){
