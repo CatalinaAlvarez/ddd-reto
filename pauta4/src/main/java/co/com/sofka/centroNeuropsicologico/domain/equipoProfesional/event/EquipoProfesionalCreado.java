@@ -6,15 +6,15 @@ import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.TerapeutaOcu
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.EquipoProfesionalId;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class ProfesionalCreado extends DomainEvent {
+public class EquipoProfesionalCreado extends DomainEvent {
 
     private final EquipoProfesionalId equipoProfesionalId;
     private final Psicologo psicologo;
     private final Neuropsicologo neuropsicologo;
     private final TerapeutaOcupacional terapeutaOcupacional;
 
-    public ProfesionalCreado(EquipoProfesionalId entityId, Psicologo psicologo, Neuropsicologo neuropsicologo, TerapeutaOcupacional terapeutaOcupacional) {
-        super("sofka.equipoProfesional.profesionalCreado");
+    public EquipoProfesionalCreado(EquipoProfesionalId entityId, Psicologo psicologo, Neuropsicologo neuropsicologo, TerapeutaOcupacional terapeutaOcupacional) {
+        super("sofka.equipoProfesional.equipoProfesionalCreado");
         this.equipoProfesionalId = entityId;
         this.psicologo = psicologo;
         this.neuropsicologo = neuropsicologo;

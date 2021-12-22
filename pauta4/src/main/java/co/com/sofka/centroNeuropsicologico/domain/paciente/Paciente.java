@@ -84,12 +84,12 @@ public class Paciente extends AggregateEvent<PacienteId> {
         appendChange(new DiagnosticoHistoriaClinicaActualizado(entityId, edad)).apply();
     }
 
-    public Optional<ConsultaId> getVendedorPorId(ConsultaId entityId){
+    public Optional<ConsultaId> getConsulta(ConsultaId entityId){
         return consultas
                 .stream()
                 .filter(consulta -> consulta.equals(entityId))
                 .findFirst();
-    }
+    } //REVISAR
 
     public Set<ConsultaId> getConsultas() {
         return consultas;

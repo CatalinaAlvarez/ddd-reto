@@ -21,7 +21,7 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
         this.psicologo = Objects.requireNonNull(psicologo);
         this.neuropsicologo = Objects.requireNonNull(neuropsicologo);
         this.terapeutaOcupacional = Objects.requireNonNull(terapeutaOcupacional);
-        appendChange(new ProfesionalCreado(entityId, psicologo, neuropsicologo, terapeutaOcupacional)).apply();
+        appendChange(new EquipoProfesionalCreado(entityId, psicologo, neuropsicologo, terapeutaOcupacional)).apply();
     }
 
     private EquipoProfesional(EquipoProfesionalId equipoProfesionalId){
