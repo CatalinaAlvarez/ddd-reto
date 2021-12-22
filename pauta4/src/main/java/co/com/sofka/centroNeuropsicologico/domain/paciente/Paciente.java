@@ -4,10 +4,7 @@ import co.com.sofka.centroNeuropsicologico.domain.consulta.value.ConsultaId;
 import co.com.sofka.centroNeuropsicologico.domain.generics.Email;
 import co.com.sofka.centroNeuropsicologico.domain.generics.Nombre;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.event.*;
-import co.com.sofka.centroNeuropsicologico.domain.paciente.value.AcudienteId;
-import co.com.sofka.centroNeuropsicologico.domain.paciente.value.Edad;
-import co.com.sofka.centroNeuropsicologico.domain.paciente.value.PacienteId;
-import co.com.sofka.centroNeuropsicologico.domain.paciente.value.PacientePrincipalId;
+import co.com.sofka.centroNeuropsicologico.domain.paciente.value.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
@@ -78,10 +75,10 @@ public class Paciente extends AggregateEvent<PacienteId> {
         appendChange(new EdadPacientePrincipalActualizada(entityId, edad)).apply();
     }
 
-    public void actualizarDiagnosticoHistoriaClinica(PacientePrincipalId entityId, Edad edad){
+    public void actualizarDiagnosticoHistoriaClinica(HistoriaClinicaId entityId, Diagnostico diagnostico){
         Objects.requireNonNull(entityId);
-        Objects.requireNonNull(edad);
-        appendChange(new DiagnosticoHistoriaClinicaActualizado(entityId, edad)).apply();
+        Objects.requireNonNull(diagnostico);
+        appendChange(new DiagnosticoHistoriaClinicaActualizado(entityId, diagnostico)).apply();
     }
 
     public Optional<ConsultaId> getConsulta(ConsultaId entityId){

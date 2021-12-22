@@ -50,4 +50,5 @@ public class Psicologo extends Entity<PsicologoId> {
     public TarjetaProfesional tarjetaProfesional() {
         return tarjetaProfesional;
     }
+
 }

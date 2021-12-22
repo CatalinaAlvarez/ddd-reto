@@ -15,6 +15,7 @@ public class EquipoProfesionalChange extends EventChange {
         });
 
         apply((PsicologoCambiado event)->{
+            equipoProfesional.psicologo.identity() ;
             equipoProfesional.psicologo.nombre = event.getNombre();
             equipoProfesional.psicologo.email = event.getEmail();
             equipoProfesional.psicologo.tarjetaProfesional = event.getTarjetaProfesional();

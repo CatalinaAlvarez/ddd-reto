@@ -5,13 +5,13 @@ import co.com.sofka.centroNeuropsicologico.domain.consulta.value.Nomenclatura;
 import co.com.sofka.centroNeuropsicologico.domain.consulta.value.Tipo;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class ConsultorioCambiado extends DomainEvent {
+public class ConsultorioAgregado extends DomainEvent {
 
     private final ConsultorioId consultorioId;
     private final Tipo tipo;
     private final Nomenclatura nomenclatura;
 
-    public ConsultorioCambiado(ConsultorioId entityId, Tipo tipo, Nomenclatura nomenclatura) {
+    public ConsultorioAgregado(ConsultorioId entityId, Tipo tipo, Nomenclatura nomenclatura) {
         super("sofka.consulta.consultorioCambiado");
 
         this.consultorioId = entityId;

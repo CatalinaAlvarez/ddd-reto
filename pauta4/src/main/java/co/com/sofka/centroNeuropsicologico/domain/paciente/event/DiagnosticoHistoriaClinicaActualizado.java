@@ -1,25 +1,27 @@
 package co.com.sofka.centroNeuropsicologico.domain.paciente.event;
 
+import co.com.sofka.centroNeuropsicologico.domain.paciente.value.Diagnostico;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.Edad;
+import co.com.sofka.centroNeuropsicologico.domain.paciente.value.HistoriaClinicaId;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.PacientePrincipalId;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class DiagnosticoHistoriaClinicaActualizado extends DomainEvent {
 
-    private final PacientePrincipalId pacientePrincipalId;
-    private final Edad edad;
+    private final HistoriaClinicaId historiaClinicaId;
+    private final Diagnostico diagnostico;
 
-    public DiagnosticoHistoriaClinicaActualizado(PacientePrincipalId entityId, Edad edad) {
+    public DiagnosticoHistoriaClinicaActualizado(HistoriaClinicaId entityId, Diagnostico diagnostico) {
         super("sofka.paciente.diagnosticoHistoriaClinicaActualizada");
-        this.pacientePrincipalId = entityId;
-        this.edad = edad;
+        this.historiaClinicaId = entityId;
+        this.diagnostico = diagnostico;
     }
 
-    public PacientePrincipalId getPacientePrincipalId() {
-        return pacientePrincipalId;
+    public HistoriaClinicaId getHistoriaClinicaId() {
+        return historiaClinicaId;
     }
 
-    public Edad getEdad() {
-        return edad;
+    public Diagnostico getDiagnostico() {
+        return diagnostico;
     }
 }

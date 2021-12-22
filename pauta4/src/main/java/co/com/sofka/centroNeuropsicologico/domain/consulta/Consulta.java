@@ -14,14 +14,12 @@ public class Consulta extends AggregateEvent<ConsultaId> {
     protected Cita cita;
     protected Consultorio consultorio;
     protected Reporte reporte;
+    protected Fecha fecha;
 
-    public Consulta(ConsultaId entityId, EquipoProfesionalId equipoProfesionalId, Cita cita, Consultorio consultorio, Reporte reporte) {
+    public Consulta(ConsultaId entityId, EquipoProfesionalId equipoProfesionalId, Fecha fecha) {
         super(entityId);
-        this.equipoProfesionalId = equipoProfesionalId;
-        this.cita = cita;
-        this.consultorio = consultorio;
-        this.reporte = reporte;
-        appendChange(new ConsultaCreada(entityId, equipoProfesionalId, cita, consultorio, reporte)).apply();
+        this.fecha = fecha;
+        appendChange(new ConsultaCreada(entityId, equipoProfesionalId, fecha)).apply();
     }
 
     private Consulta(ConsultaId consultaId){
@@ -36,12 +34,16 @@ public class Consulta extends AggregateEvent<ConsultaId> {
         return consulta;
     }
 
-    public void cambiarConsultorio(ConsultorioId entityId, Tipo tipo, Nomenclatura nomenclatura){
-        appendChange(new ConsultorioCambiado(entityId, tipo, nomenclatura)).apply();
+    public void agregarConsultorio(ConsultorioId entityId, Tipo tipo, Nomenclatura nomenclatura){
+        appendChange(new ConsultorioAgregado(entityId, tipo, nomenclatura)).apply();
     }
 
-    public void cambiarCita(CitaId entityId, Fecha fecha, Tipo tipo, Duracion duracion){
-        appendChange(new CitaCambiada(entityId, fecha, tipo, duracion)).apply();
+    public void agregarCita(CitaId entityId, Tipo tipo, Duracion duracion){
+        appendChange(new CitaAgregada(entityId, tipo, duracion)).apply();
+    }
+
+    public void agregarReporte(ReporteId entityId, Comentario comentario){
+        appendChange(new ReporteAgregado(entityId, comentario)).apply();
     }
 
     public void actualizarTipoCita(CitaId entityId, Tipo tipo){
@@ -64,9 +66,6 @@ public class Consulta extends AggregateEvent<ConsultaId> {
         appendChange(new ComentarioReporteActualizado(entityId, comentario)).apply();
     }
 
-    public void actualizarProfesionalIdReporte(ReporteId entityId, ProfesionalId profesionalId){
-        appendChange(new ProfesionalIdReporteReporteActualizado(entityId, profesionalId)).apply();
-    }
 
     public EquipoProfesionalId equipoProfesionalId() {
         return equipoProfesionalId;
@@ -82,5 +81,9 @@ public class Consulta extends AggregateEvent<ConsultaId> {
 
     public Reporte reporte() {
         return reporte;
+    }
+
+    public Fecha fecha() {
+        return fecha;
     }
 }

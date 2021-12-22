@@ -8,20 +8,26 @@ public class ConsultaChange extends EventChange {
 
         apply((ConsultaCreada event)->{
             consulta.equipoProfesionalId = event.getEquipoProfesionalId();
-            consulta.cita = event.getCita();
-            consulta.consultorio = event.getConsultorio();
-            consulta.reporte = event.getReporte();
+            consulta.fecha = event.getFecha();
+
         });
 
-        apply((ConsultorioCambiado event)->{ //REVISAR
-            consulta.consultorio.tipo = event.getTipo();
-            consulta.consultorio.nomenclatura = event.getNomenclatura();
+        apply((ConsultorioAgregado event)->{
+            consulta.consultorio = new Consultorio(event.getConsultorioId(),
+                    event.getTipo(),
+                    event.getNomenclatura());
+
         });
 
-        apply((CitaCambiada event)->{ //REVISAR
-            consulta.cita.fecha = event.getFecha();
-            consulta.cita.tipo = event.getTipo();
-            consulta.cita.duracion = event.getDuracion();
+        apply((CitaAgregada event)->{
+            consulta.cita = new Cita(event.getCitaId(),
+                    event.getTipo(),
+                    event.getDuracion());
+        });
+
+        apply((ReporteAgregado event)->{
+            consulta.reporte = new Reporte(event.getReporteId(),
+                    event.getComentario());
         });
 
         apply((TipoCitaActualizado event)->{
@@ -44,9 +50,6 @@ public class ConsultaChange extends EventChange {
             consulta.reporte.comentario = event.getComentario();
         });
 
-        apply((ProfesionalIdReporteReporteActualizado event)->{
-            consulta.reporte.profesionalId = event.getProfesionalId();
-        });
 
     }
 }

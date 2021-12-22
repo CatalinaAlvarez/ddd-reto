@@ -10,27 +10,21 @@ import java.util.Objects;
 
 public class Cita extends Entity<CitaId> {
 
-    protected Fecha fecha;
     protected Tipo tipo;
     protected Duracion duracion;
 
-    public Cita(CitaId entityId, Fecha fecha, Tipo tipo, Duracion duracion) {
+    public Cita(CitaId entityId, Tipo tipo, Duracion duracion) {
         super(entityId);
-        this.fecha = Objects.requireNonNull(fecha);
         this.tipo = Objects.requireNonNull(tipo);
         this.duracion = Objects.requireNonNull(duracion);
     }
 
-    public void actualizarFecha(Fecha fecha){
-        this.fecha = Objects.requireNonNull(fecha);
+    public void actualizarTipo(Tipo tipo){
+        this.tipo = Objects.requireNonNull(tipo);
     }
 
     public void actualizarDuracion(Duracion duracion){
         this.duracion = Objects.requireNonNull(duracion);
-    }
-
-    public Fecha fecha() {
-        return fecha;
     }
 
     public Tipo tipo() {
