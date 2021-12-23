@@ -4,37 +4,26 @@ import co.com.sofka.centroNeuropsicologico.domain.paciente.Acudiente;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.HistoriaClinica;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.PacientePrincipal;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.PacienteId;
+import co.com.sofka.centroNeuropsicologico.domain.paciente.value.Telefono;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class PacienteCreado extends DomainEvent {
 
     private final PacienteId pacienteId;
-    private final Acudiente acudiente;
-    private final PacientePrincipal pacientePrincipal;
-    private final HistoriaClinica historiaClinica;
+    private final Telefono telefono;
 
-    public PacienteCreado(PacienteId entityId, Acudiente acudiente, PacientePrincipal pacientePrincipal, HistoriaClinica historiaClinica) {
+
+    public PacienteCreado(PacienteId entityId, Telefono telefono) {
         super("sofka.paciente.pacienteCreado");
         this.pacienteId = entityId;
-        this.acudiente = acudiente;
-        this.pacientePrincipal = pacientePrincipal;
-        this.historiaClinica = historiaClinica;
+        this.telefono = telefono;
     }
 
     public PacienteId getPacienteId() {
         return pacienteId;
     }
 
-    public Acudiente getAcudiente() {
-        return acudiente;
+    public Telefono getTelefono() {
+        return telefono;
     }
-
-    public PacientePrincipal getPacientePrincipal() {
-        return pacientePrincipal;
-    }
-
-    public HistoriaClinica getHistoriaClinica() {
-        return historiaClinica;
-    }
-
 }

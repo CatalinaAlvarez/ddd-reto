@@ -5,13 +5,13 @@ import co.com.sofka.centroNeuropsicologico.domain.generics.Nombre;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.AcudienteId;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class AcudienteCambiado extends DomainEvent {
+public class AcudienteAgregado extends DomainEvent {
 
     private final AcudienteId acudienteId;
     private final Nombre nombre;
     private final Email email;
 
-    public AcudienteCambiado(AcudienteId entityId, Nombre nombre, Email email) {
+    public AcudienteAgregado(AcudienteId entityId, Nombre nombre, Email email) {
         super("sofka.paciente.acudienteCambiado");
         this.acudienteId = entityId;
         this.nombre = nombre;

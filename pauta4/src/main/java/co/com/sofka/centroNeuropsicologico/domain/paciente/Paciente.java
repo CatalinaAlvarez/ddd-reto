@@ -16,15 +16,13 @@ public class Paciente extends AggregateEvent<PacienteId> {
     protected Acudiente acudiente;
     protected PacientePrincipal pacientePrincipal;
     protected HistoriaClinica historiaClinica;
+    protected Telefono telefono;
 
 
-    public Paciente(PacienteId entityId, Acudiente acudiente, PacientePrincipal pacientePrincipal, HistoriaClinica historiaClinica) {
+    public Paciente(PacienteId entityId, Telefono telefono) {
         super(entityId);
-        this.acudiente = Objects.requireNonNull(acudiente);
-        this.pacientePrincipal = Objects.requireNonNull(pacientePrincipal);
-        this.historiaClinica = Objects.requireNonNull(historiaClinica);
-        this.consultas = new HashSet<>();
-        appendChange(new PacienteCreado(entityId, acudiente, pacientePrincipal, historiaClinica)).apply();
+        this.telefono = Objects.requireNonNull(telefono);
+        appendChange(new PacienteCreado(entityId, telefono)).apply();
     }
 
     private Paciente(PacienteId pacienteId){
@@ -39,11 +37,25 @@ public class Paciente extends AggregateEvent<PacienteId> {
         return paciente;
     }
 
-    public void cambiarAcudiente(AcudienteId entityId, Nombre nombre, Email email){
+    public void agregarAcudiente(AcudienteId entityId, Nombre nombre, Email email){
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
-        appendChange(new AcudienteCambiado(entityId, nombre, email)).apply();
+        appendChange(new AcudienteAgregado(entityId, nombre, email)).apply();
+    }
+
+    public void agregarPacientePrincipal(PacientePrincipalId entityId, Nombre nombre, Edad edad){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(nombre);
+        Objects.requireNonNull(edad);
+        appendChange(new PacientePrincipalAgregado(entityId, nombre, edad)).apply();
+    }
+
+    public void agregarHistoriaClinica(HistoriaClinicaId entityId, Diagnostico diagnostico, Anamnesis anamnesis){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(diagnostico);
+        Objects.requireNonNull(anamnesis);
+        appendChange(new HistoriaClinicaAgregada(entityId, diagnostico, anamnesis)).apply();
     }
 
     public void agregarConsultaId(ConsultaId consultaId){

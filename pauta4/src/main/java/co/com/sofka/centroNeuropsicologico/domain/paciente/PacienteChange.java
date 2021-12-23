@@ -10,19 +10,36 @@ public class PacienteChange extends EventChange {
     public PacienteChange(Paciente paciente) {
 
         apply((PacienteCreado event)->{
-            paciente.acudiente = event.getAcudiente();
-            paciente.pacientePrincipal = event.getPacientePrincipal();
-            paciente.historiaClinica = event.getHistoriaClinica();
+            paciente.telefono = event.getTelefono();
             paciente.consultas = new HashSet<>();
         });
 
-        apply((AcudienteCambiado event)->{
-            paciente.acudiente.nombre = event.getNombre();
-            paciente.acudiente.email = event.getEmail();
+        apply((AcudienteAgregado event)->{
+            paciente.acudiente = new Acudiente(
+                    event.getAcudienteId(),
+                    event.getNombre(),
+                    event.getEmail()
+            );
+        });
+
+        apply((PacientePrincipalAgregado event)->{
+            paciente.pacientePrincipal = new PacientePrincipal(
+                    event.getPacientePrincipalId(),
+                    event.getNombre(),
+                    event.getEdad()
+            );
+        });
+
+        apply((HistoriaClinicaAgregada event)->{
+            paciente.historiaClinica = new HistoriaClinica(
+                    event.getHistoriaClinicaId(),
+                    event.getDiagnostico(),
+                    event.getAnamnesis()
+            );
         });
 
         apply((ConsultaAgregada event)->{
-            paciente.consultas.add(new ConsultaId()); //REVISAR. ENVIAR ARGUMENTO
+            paciente.consultas.add(event.getConsultaId()); //REVISAR. ENVIAR ARGUMENTO
 
         });
 
