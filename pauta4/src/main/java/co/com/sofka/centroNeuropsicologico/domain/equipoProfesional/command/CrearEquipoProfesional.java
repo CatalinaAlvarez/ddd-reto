@@ -1,25 +1,25 @@
 package co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.command;
 
+import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.event.TipoEquipo;
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.EquipoProfesionalId;
-import co.com.sofka.centroNeuropsicologico.domain.generics.Nombre;
 import co.com.sofka.domain.generic.Command;
 
 public class CrearEquipoProfesional extends Command {
 
     private final EquipoProfesionalId equipoProfesionalId;
-    private final Nombre nombre;
+    private final TipoEquipo tipoEquipo;
 
-    public CrearEquipoProfesional(EquipoProfesionalId entityId, Nombre nombre){
+    public CrearEquipoProfesional(EquipoProfesionalId entityId, TipoEquipo tipoEquipo){
 
         this.equipoProfesionalId = entityId;
-        this.nombre = nombre;
+        this.tipoEquipo = tipoEquipo;
     }
 
     public EquipoProfesionalId getEquipoProfesionalId() {
         return equipoProfesionalId;
     }
 
-    public Nombre getNombre() {
-        return nombre;
+    public TipoEquipo getTipoEquipo() {
+        return tipoEquipo;
     }
 }

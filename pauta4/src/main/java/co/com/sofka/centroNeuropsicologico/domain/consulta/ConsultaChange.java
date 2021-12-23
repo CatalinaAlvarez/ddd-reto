@@ -12,11 +12,10 @@ public class ConsultaChange extends EventChange {
 
         });
 
-        apply((ConsultorioAgregado event)->{
-            consulta.consultorio = new Consultorio(event.getConsultorioId(),
-                    event.getTipo(),
-                    event.getNomenclatura());
-
+        apply((FacturaAgregada event)->{
+            consulta.factura = new Factura(event.getId(),
+                    event.getFecha(),
+                    event.getValor());
         });
 
         apply((CitaAgregada event)->{
@@ -38,12 +37,8 @@ public class ConsultaChange extends EventChange {
             consulta.cita.duracion = event.getDuracion();
         });
 
-        apply((TipoConsultorioActualizado event)->{
-            consulta.consultorio.tipo = event.getTipo();
-        });
-
-        apply((NomenclaturaConsultorioActualizada event)->{
-            consulta.consultorio.nomenclatura = event.getNomenclatura();
+        apply((ValorFacturaActualizado event)->{
+            consulta.factura.valor = event.getValor();
         });
 
         apply((ComentarioReporteActualizado event)->{

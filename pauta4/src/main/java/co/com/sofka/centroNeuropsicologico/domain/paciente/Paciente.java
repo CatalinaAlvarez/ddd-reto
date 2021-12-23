@@ -37,25 +37,25 @@ public class Paciente extends AggregateEvent<PacienteId> {
         return paciente;
     }
 
-    public void agregarAcudiente(AcudienteId entityId, Nombre nombre, Email email){
-        Objects.requireNonNull(entityId);
+    public void agregarAcudiente(Nombre nombre, Email email){
+        var id = new AcudienteId();
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
-        appendChange(new AcudienteAgregado(entityId, nombre, email)).apply();
+        appendChange(new AcudienteAgregado(id, nombre, email)).apply();
     }
 
-    public void agregarPacientePrincipal(PacientePrincipalId entityId, Nombre nombre, Edad edad){
-        Objects.requireNonNull(entityId);
+    public void agregarPacientePrincipal(Nombre nombre, Edad edad){
+        var id = new PacientePrincipalId();
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(edad);
-        appendChange(new PacientePrincipalAgregado(entityId, nombre, edad)).apply();
+        appendChange(new PacientePrincipalAgregado(id, nombre, edad)).apply();
     }
 
-    public void agregarHistoriaClinica(HistoriaClinicaId entityId, Diagnostico diagnostico, Anamnesis anamnesis){
-        Objects.requireNonNull(entityId);
+    public void agregarHistoriaClinica(Diagnostico diagnostico, Anamnesis anamnesis){
+        var id = new HistoriaClinicaId();
         Objects.requireNonNull(diagnostico);
         Objects.requireNonNull(anamnesis);
-        appendChange(new HistoriaClinicaAgregada(entityId, diagnostico, anamnesis)).apply();
+        appendChange(new HistoriaClinicaAgregada(id, diagnostico, anamnesis)).apply();
     }
 
     public void agregarConsultaId(ConsultaId consultaId){
@@ -98,7 +98,7 @@ public class Paciente extends AggregateEvent<PacienteId> {
                 .stream()
                 .filter(consulta -> consulta.equals(entityId))
                 .findFirst();
-    } //REVISAR
+    }
 
     public Set<ConsultaId> getConsultas() {
         return consultas;

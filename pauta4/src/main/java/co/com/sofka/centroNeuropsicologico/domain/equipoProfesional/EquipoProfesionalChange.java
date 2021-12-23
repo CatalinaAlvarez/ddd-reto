@@ -9,7 +9,7 @@ public class EquipoProfesionalChange extends EventChange {
     public EquipoProfesionalChange(EquipoProfesional equipoProfesional) {
 
         apply((EquipoProfesionalCreado event)->{
-            equipoProfesional.nombre = event.getNombre();
+            equipoProfesional.tipoEquipo = event.getTipoEquipo();
         });
 
         apply((PsicologoAgregado event)->{

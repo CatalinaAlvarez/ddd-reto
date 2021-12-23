@@ -1,8 +1,5 @@
 package co.com.sofka.centroNeuropsicologico.domain.consulta.event;
 
-import co.com.sofka.centroNeuropsicologico.domain.consulta.Cita;
-import co.com.sofka.centroNeuropsicologico.domain.consulta.Consultorio;
-import co.com.sofka.centroNeuropsicologico.domain.consulta.Reporte;
 import co.com.sofka.centroNeuropsicologico.domain.consulta.value.ConsultaId;
 import co.com.sofka.centroNeuropsicologico.domain.consulta.value.Fecha;
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.EquipoProfesionalId;

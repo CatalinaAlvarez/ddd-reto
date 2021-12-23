@@ -1,6 +1,5 @@
 package co.com.sofka.centroNeuropsicologico.domain.paciente;
 
-import co.com.sofka.centroNeuropsicologico.domain.consulta.value.ConsultaId;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.event.*;
 import co.com.sofka.domain.generic.EventChange;
 

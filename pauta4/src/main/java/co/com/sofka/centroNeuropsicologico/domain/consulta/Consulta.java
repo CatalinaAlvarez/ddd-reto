@@ -7,12 +7,13 @@ import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Consulta extends AggregateEvent<ConsultaId> {
 
     protected EquipoProfesionalId equipoProfesionalId;
     protected Cita cita;
-    protected Consultorio consultorio;
+    protected Factura factura;
     protected Reporte reporte;
     protected Fecha fecha;
 
@@ -34,16 +35,24 @@ public class Consulta extends AggregateEvent<ConsultaId> {
         return consulta;
     }
 
-    public void agregarConsultorio(ConsultorioId entityId, Tipo tipo, Nomenclatura nomenclatura){
-        appendChange(new ConsultorioAgregado(entityId, tipo, nomenclatura)).apply();
+    public void agregarFactura(Fecha fecha, Valor valor){
+        var id = new FacturaId();
+        Objects.requireNonNull(fecha);
+        Objects.requireNonNull(valor);
+        appendChange(new FacturaAgregada(id, fecha, valor)).apply();
     }
 
-    public void agregarCita(CitaId entityId, Tipo tipo, Duracion duracion){
-        appendChange(new CitaAgregada(entityId, tipo, duracion)).apply();
+    public void agregarCita(Tipo tipo, Duracion duracion){
+        var id = new CitaId();
+        Objects.requireNonNull(tipo);
+        Objects.requireNonNull(duracion);
+        appendChange(new CitaAgregada(id, tipo, duracion)).apply();
     }
 
-    public void agregarReporte(ReporteId entityId, Comentario comentario){
-        appendChange(new ReporteAgregado(entityId, comentario)).apply();
+    public void agregarReporte(Comentario comentario){
+        var id = new ReporteId();
+        Objects.requireNonNull(comentario);
+        appendChange(new ReporteAgregado(id, comentario)).apply();
     }
 
     public void actualizarTipoCita(CitaId entityId, Tipo tipo){
@@ -54,18 +63,13 @@ public class Consulta extends AggregateEvent<ConsultaId> {
         appendChange(new DuracionCitaActualizada(entityId, duracion)).apply();
     }
 
-    public void actualizarTipoConsultorio(ConsultorioId entityId, Tipo tipo){
-        appendChange(new TipoConsultorioActualizado(entityId, tipo)).apply();
-    }
-
-    public void actualizarNomenclaturaConsultorio(ConsultorioId entityId, Nomenclatura nomenclatura){
-        appendChange(new NomenclaturaConsultorioActualizada(entityId, nomenclatura)).apply();
+    public void actualizarValorFactura(FacturaId entityId, Valor valor){
+        appendChange(new ValorFacturaActualizado(entityId, valor)).apply();
     }
 
     public void actualizarComentarioReporte(ReporteId entityId, Comentario comentario){
         appendChange(new ComentarioReporteActualizado(entityId, comentario)).apply();
     }
-
 
     public EquipoProfesionalId equipoProfesionalId() {
         return equipoProfesionalId;
@@ -75,8 +79,8 @@ public class Consulta extends AggregateEvent<ConsultaId> {
         return cita;
     }
 
-    public Consultorio consultorio() {
-        return consultorio;
+    public Factura factura() {
+        return factura;
     }
 
     public Reporte reporte() {
