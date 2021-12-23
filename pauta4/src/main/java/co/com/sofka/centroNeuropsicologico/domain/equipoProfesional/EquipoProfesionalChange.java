@@ -9,31 +9,34 @@ public class EquipoProfesionalChange extends EventChange {
     public EquipoProfesionalChange(EquipoProfesional equipoProfesional) {
 
         apply((EquipoProfesionalCreado event)->{
-            equipoProfesional.psicologo = event.getPsicologo();
-            equipoProfesional.neuropsicologo = event.getNeuropsicologo();
-            equipoProfesional.terapeutaOcupacional = event.getTerapeutaOcupacional();
+            equipoProfesional.nombre = event.getNombre();
         });
 
-        apply((PsicologoCambiado event)->{
-            equipoProfesional.psicologo.identity() ;
-            equipoProfesional.psicologo.nombre = event.getNombre();
-            equipoProfesional.psicologo.email = event.getEmail();
-            equipoProfesional.psicologo.tarjetaProfesional = event.getTarjetaProfesional();
-            equipoProfesional.psicologo.estudios = new HashSet<>();
+        apply((PsicologoAgregado event)->{
+            equipoProfesional.psicologo = new Psicologo(
+                    event.getPsicologoId(),
+                    event.getNombre(),
+                    event.getEmail(),
+                    event.getTarjetaProfesional()
+            );
         });
 
-        apply((NeuropsicologoCambiado event)->{
-            equipoProfesional.neuropsicologo.nombre = event.getNombre();
-            equipoProfesional.neuropsicologo.email = event.getEmail();
-            equipoProfesional.neuropsicologo.tarjetaProfesional = event.getTarjetaProfesional();
-            equipoProfesional.neuropsicologo.estudios = new HashSet<>();
+        apply((NeuropsicologoAgregado event)->{
+            equipoProfesional.neuropsicologo = new Neuropsicologo(
+                    event.getNeuropsicologoId(),
+                    event.getNombre(),
+                    event.getEmail(),
+                    event.getTarjetaProfesional()
+            );
         });
 
-        apply((TerapeutaOcupacionalCambiado event)->{
-            equipoProfesional.terapeutaOcupacional.nombre = event.getNombre();
-            equipoProfesional.terapeutaOcupacional.email = event.getEmail();
-            equipoProfesional.terapeutaOcupacional.tarjetaProfesional = event.getTarjetaProfesional();
-            equipoProfesional.terapeutaOcupacional.estudios = new HashSet<>();
+        apply((TerapeutaOcupacionalAgregado event)->{
+            equipoProfesional.terapeutaOcupacional = new TerapeutaOcupacional(
+                    event.getTerapeutaOcupacionalId(),
+                    event.getNombre(),
+                    event.getEmail(),
+                    event.getTarjetaProfesional()
+            );
         });
 
         apply((EmailPsicologoActualizado event)->{

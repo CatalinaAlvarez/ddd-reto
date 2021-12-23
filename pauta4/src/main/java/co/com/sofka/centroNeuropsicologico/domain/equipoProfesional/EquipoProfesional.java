@@ -15,19 +15,16 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
     protected Psicologo psicologo;
     protected Neuropsicologo neuropsicologo;
     protected TerapeutaOcupacional terapeutaOcupacional;
+    protected Nombre nombre;
 
-    public EquipoProfesional(EquipoProfesionalId entityId, Psicologo psicologo, Neuropsicologo neuropsicologo, TerapeutaOcupacional terapeutaOcupacional) {
+    public EquipoProfesional(EquipoProfesionalId entityId, Nombre nombre) {
         super(entityId);
-        this.psicologo = Objects.requireNonNull(psicologo);
-        this.neuropsicologo = Objects.requireNonNull(neuropsicologo);
-        this.terapeutaOcupacional = Objects.requireNonNull(terapeutaOcupacional);
-        appendChange(new EquipoProfesionalCreado(entityId, psicologo, neuropsicologo, terapeutaOcupacional)).apply();
+        appendChange(new EquipoProfesionalCreado(entityId, nombre)).apply();
     }
 
     private EquipoProfesional(EquipoProfesionalId equipoProfesionalId){
         super(equipoProfesionalId);
         subscribe(new EquipoProfesionalChange(this));
-
     }
 
     public static EquipoProfesional from(EquipoProfesionalId entityId, List<DomainEvent> events){
@@ -36,28 +33,28 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
         return equipoProfesional;
     }
 
-    public void cambiarPsicologo(PsicologoId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
+    public void agregarPsicologo(PsicologoId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
         Objects.requireNonNull(tarjetaProfesional);
-        appendChange(new PsicologoCambiado(entityId, nombre, email, tarjetaProfesional)).apply();
+        appendChange(new PsicologoAgregado(entityId, nombre, email, tarjetaProfesional)).apply();
     }
 
-    public void cambiarNeuropsicologo(NeuropsicologoId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
+    public void agregarNeuropsicologo(NeuropsicologoId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
         Objects.requireNonNull(tarjetaProfesional);
-        appendChange(new NeuropsicologoCambiado(entityId, nombre, email, tarjetaProfesional)).apply();
+        appendChange(new NeuropsicologoAgregado(entityId, nombre, email, tarjetaProfesional)).apply();
     }
 
-    public void cambiarTerapeutaOcupacional(TerapeutaOcupacionalId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
+    public void agregarTerapeutaOcupacional(TerapeutaOcupacionalId entityId, Nombre nombre, Email email, TarjetaProfesional tarjetaProfesional){
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
         Objects.requireNonNull(email);
         Objects.requireNonNull(tarjetaProfesional);
-        appendChange(new TerapeutaOcupacionalCambiado(entityId, nombre, email, tarjetaProfesional)).apply();
+        appendChange(new TerapeutaOcupacionalAgregado(entityId, nombre, email, tarjetaProfesional)).apply();
     }
 
     public void actualizarEmailPsicologo(PsicologoId entityId, Email email){
@@ -96,6 +93,7 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
         appendChange(new EstudioTerapeutaOcupacionalAgregado(entityId, estudio)).apply();
     }
 
+
     public Psicologo psicologo() {
         return psicologo;
     }
@@ -106,5 +104,9 @@ public class EquipoProfesional extends AggregateEvent<EquipoProfesionalId> {
 
     public TerapeutaOcupacional terapeutaOcupacional() {
         return terapeutaOcupacional;
+    }
+
+    public Nombre nombre() {
+        return nombre;
     }
 }
