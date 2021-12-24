@@ -4,16 +4,15 @@ import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.Paciente;
-import co.com.sofka.centroNeuropsicologico.domain.paciente.command.AgregarAcudiente;
+import co.com.sofka.centroNeuropsicologico.domain.paciente.command.AgregarPacientePrincipal;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.PacienteId;
 import co.com.sofka.centroNeuropsicologico.domain.paciente.value.Telefono;
 
-
-public class AgregarAcudienteUseCase extends UseCase<RequestCommand<AgregarAcudiente>, ResponseEvents> {
+public class AgregarPacientePrincipalUseCase extends UseCase<RequestCommand<AgregarPacientePrincipal>, ResponseEvents> {
     @Override
-    public void executeUseCase(RequestCommand<AgregarAcudiente> agregarAcudienteRequestCommand) {
+    public void executeUseCase(RequestCommand<AgregarPacientePrincipal> agregarPacientePrincipalRequestCommand) {
 
-        var command = agregarAcudienteRequestCommand.getCommand();
+        var command = agregarPacientePrincipalRequestCommand.getCommand();
 
         Paciente paciente;
 
@@ -22,10 +21,7 @@ public class AgregarAcudienteUseCase extends UseCase<RequestCommand<AgregarAcudi
                 new Telefono("123456789")
         );
 
-        paciente.agregarAcudiente(
-                command.getNombre(),
-                command.getEmail()
-        );
+        paciente.agregarPacientePrincipal(command.getNombre(), command.getEdad());
 
         emit().onResponse(new ResponseEvents(paciente.getUncommittedChanges()));
     }

@@ -13,12 +13,16 @@ public class Nombre implements ValueObject<String> {
         if(this.value.isBlank()){
             throw new IllegalArgumentException("El nombre no puede estar vacío");
         }
-        if(this.value.length()<4){
-            throw new IllegalArgumentException("El nombre no puede tener menos de cuatro caracteres");
+        if(this.value.length()<2){
+            throw new IllegalArgumentException("El nombre no puede tener menos de dos caracteres");
         }
         if(this.value.length()>50){
             throw new IllegalArgumentException("El nombre no puede tener más de cincuenta caracteres");
         }
+        if(!this.value.matches("^[\\p{L} .'-]+$")){
+            throw new IllegalArgumentException("El nombre no puede tener caracteres especiales, ni números");
+        }
+
     }
 
     @Override

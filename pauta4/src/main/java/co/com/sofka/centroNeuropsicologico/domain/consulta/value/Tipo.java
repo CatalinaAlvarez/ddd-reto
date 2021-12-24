@@ -4,25 +4,23 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Tipo implements ValueObject<String> {
+public class Tipo implements ValueObject<Tipo.Valor> {
 
-    private final String value;
+    private final Valor value;
 
-    public Tipo(String value){
-        this.value = Objects.requireNonNull(value);
-        if(this.value.isBlank()){
-            throw new IllegalArgumentException("El tipo no puede estar vacío");
-        }
-        if(this.value.length()<4){
-            throw new IllegalArgumentException("El tipo no puede tener menos de cuatro caracteres");
-        }
-        if(this.value.length()>50){
-            throw new IllegalArgumentException("El tipo no puede tener más de cincuenta caracteres");
-        }
+
+    public Tipo(Valor valor) {
+        this.value = valor;
+    }
+
+    public enum Valor {
+        REHABILITACION_COGNITIVA,
+        ASESORIA_PSICOLOGICA,
+        SEGUIMIENTO;
     }
 
     @Override
-    public String value() {
+    public Valor value() {
         return value;
     }
 }

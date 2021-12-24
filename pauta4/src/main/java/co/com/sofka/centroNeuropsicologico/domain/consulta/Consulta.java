@@ -90,4 +90,5 @@ public class Consulta extends AggregateEvent<ConsultaId> {
     public Fecha fecha() {
         return fecha;
     }
+
 }
