@@ -9,18 +9,12 @@ import co.com.sofka.domain.generic.DomainEvent;
 
 public class PacienteCreado extends DomainEvent {
 
-    private final PacienteId pacienteId;
     private final Telefono telefono;
 
 
-    public PacienteCreado(PacienteId entityId, Telefono telefono) {
+    public PacienteCreado(Telefono telefono) {
         super("sofka.paciente.pacienteCreado");
-        this.pacienteId = entityId;
         this.telefono = telefono;
-    }
-
-    public PacienteId getPacienteId() {
-        return pacienteId;
     }
 
     public Telefono getTelefono() {

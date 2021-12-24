@@ -22,7 +22,7 @@ public class Paciente extends AggregateEvent<PacienteId> {
     public Paciente(PacienteId entityId, Telefono telefono) {
         super(entityId);
         this.telefono = Objects.requireNonNull(telefono);
-        appendChange(new PacienteCreado(entityId, telefono)).apply();
+        appendChange(new PacienteCreado(telefono)).apply();
     }
 
     private Paciente(PacienteId pacienteId){

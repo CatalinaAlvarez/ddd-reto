@@ -14,10 +14,13 @@ public class Telefono implements ValueObject<String> {
             throw new IllegalArgumentException("El teléfono no puede estar vacío");
         }
         if(this.value.length()<7){
-            throw new IllegalArgumentException("El teléfono no puede tener menos de cinco caracteres");
+            throw new IllegalArgumentException("El teléfono no puede tener menos de siete caracteres");
         }
-        if(this.value.length()>200){
-            throw new IllegalArgumentException("El estudio no puede tener más de doscientos caracteres");
+        if(this.value.length()>10){
+            throw new IllegalArgumentException("El teléfono no puede tener más de diez caracteres");
+        }
+        if (!this.value.matches("[0-9]*")){
+            throw new IllegalArgumentException("El teléfono sólo puede incluir números");
         }
     }
 
