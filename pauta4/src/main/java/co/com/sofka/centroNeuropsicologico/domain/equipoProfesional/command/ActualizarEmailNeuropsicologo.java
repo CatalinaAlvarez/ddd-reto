@@ -11,7 +11,7 @@ public class ActualizarEmailNeuropsicologo extends Command {
     private NeuropsicologoId neuropsicologoId;
     private Email email;
 
-    public void actualizarEmailNeuropsicologo(EquipoProfesionalId equipoProfesionalId, NeuropsicologoId entityId, Email email){
+    public ActualizarEmailNeuropsicologo(EquipoProfesionalId equipoProfesionalId, NeuropsicologoId entityId, Email email){
 
         this.equipoProfesionalId = equipoProfesionalId;
         this.neuropsicologoId = entityId;

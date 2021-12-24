@@ -1,6 +1,6 @@
 package co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.command;
 
-import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.event.TipoEquipo;
+import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.TipoEquipo;
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.EquipoProfesionalId;
 import co.com.sofka.domain.generic.Command;
 

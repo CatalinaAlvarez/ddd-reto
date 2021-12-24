@@ -2,6 +2,7 @@ package co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.event;
 
 
 import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.EquipoProfesionalId;
+import co.com.sofka.centroNeuropsicologico.domain.equipoProfesional.value.TipoEquipo;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class EquipoProfesionalCreado extends DomainEvent {

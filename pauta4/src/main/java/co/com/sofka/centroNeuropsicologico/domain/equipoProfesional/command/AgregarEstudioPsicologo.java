@@ -11,7 +11,7 @@ public class AgregarEstudioPsicologo extends Command {
     private PsicologoId psicologoId;
     private Estudio estudio;
 
-    public void agregarEstudioPsicologo(EquipoProfesionalId equipoProfesionalId, PsicologoId entityId, Estudio estudio){
+    public AgregarEstudioPsicologo(EquipoProfesionalId equipoProfesionalId, PsicologoId entityId, Estudio estudio){
 
         this.equipoProfesionalId = equipoProfesionalId;
         this.psicologoId = entityId;
